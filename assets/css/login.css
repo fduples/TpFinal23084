@@ -1,0 +1,137 @@
+body {
+  width: 100%;
+  /* background-color: black; */
+  /* background-image: url("../img/Logo_Bocatto.png"); */
+  /* background-repeat: no-repeat; */
+  background-size: 60%;
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: white;
+  font-weight: bold !important;
+}
+
+p {
+  font-size: larger;
+  font-weight: bold !important;
+}
+
+.blanco {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.negrita {
+  color: black !important;
+  font-weight: bold !important;
+}
+
+div .blanco {
+  font-size: larger;
+  font-weight: bold !important;
+}
+
+.mesa {
+  border: none;
+  box-shadow: 0px 3px 3px 3px rgba(92, 92, 92, 0.849);
+}
+
+.visible {
+  display: block;
+}
+
+.ocultas {
+  display: none;
+}
+
+.productos {
+  width: 100%;
+}
+.logo-nav {
+  min-width: calc(2vw + 15px);
+  max-width: calc(4vw + 15px);
+}
+/* login */
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin,
+.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+.form-signin,
+.form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.login {
+  max-width: 45%;
+  padding: 15px;
+  margin: auto;
+  margin-top: 5vh;
+  /* background-color: #fff; */
+  background-clip: border-box;
+  border: 1px solid rgba(12, 150, 230, 0.25);
+  border-radius: 0.5rem;
+  /* display: -ms-flexbox;
+  display: flex; */
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 140px;
+  padding-bottom: 40px;
+}
+.logo {
+  border-radius: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 5px rgba(0, 0, 0, 0.19);
+  margin-top: -15%;
+  margin-bottom: 5px;
+  width: 15vw;
+  /* height: 8rem; */
+  padding: 2%;
+}
+@media (min-width: 680px) {
+  body {
+    /* background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center; */
+  }
+}
+@media (max-width: 480px) {
+  .login {
+    max-width: 75%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 8vh;
+  }
+  .logo {
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 5px rgba(0, 0, 0, 0.19);
+    margin-top: 4vh;
+    margin-bottom: 1%;
+    width: 20vw;
+    padding: 3%;
+  }
+}

@@ -1,0 +1,57 @@
+body {
+    background-image: url("../../img/Logo_Bocatto.png");
+    background-repeat: no-repeat;
+    background-size: 60%;
+  }
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    font-weight: bold !important; 
+}
+
+p{
+    font-size: larger;
+    font-weight: bold !important;
+}
+
+.blanco {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.negrita {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+div .blanco{
+    font-size: larger;
+    font-weight: bold !important;
+}
+
+.mesa {
+    border:none;
+    box-shadow: 0px 3px 3px 3px rgba(92, 92, 92, 0.849);
+}
+
+.visible {
+    display: block;
+}
+
+.ocultas {
+    display: none;
+}
+
+.productos {
+    width:100%;
+}
+
+@media  (min-width: 680px) {
+body {
+    background-image: url("../img/Logo_Bocatto.png");
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+  }
+}

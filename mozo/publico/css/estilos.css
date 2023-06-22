@@ -1,0 +1,96 @@
+body {
+  /* background-image: url("../img/Logo_Bocatto.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top; */
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: white;
+  font-weight: bold !important;
+}
+
+p {
+  font-size: larger;
+  font-weight: bold !important;
+}
+
+.contenedor_circulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mesaRedonda {
+  width: 150px;
+  height: 150px;
+  padding: 2px;
+  border: none !important;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  background-color: transparent !important;
+}
+
+.mesaRedonda img {
+  margin: 5%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.numero-mesa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center en horizontal y vertical */
+  font-size: 34px;
+  color: black;
+  font-weight: bold;
+  z-index: 2; /* Para que quede encima de la imagen */
+}
+
+.blanco {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.negrita {
+  color: black !important;
+  font-weight: bold !important;
+}
+
+div .blanco {
+  font-size: larger;
+  font-weight: bold !important;
+}
+
+.mesa {
+  border: none;
+  box-shadow: 0px 3px 3px 3px rgba(92, 92, 92, 0.849);
+}
+
+.visible {
+  display: block;
+}
+
+.ocultas {
+  display: none;
+}
+
+.productos {
+  width: 100%;
+}
+
+@media (min-width: 680px) {
+  body {
+    /* background-image: url("../img/Logo_Bocatto.png");
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: top; */
+  }
+}

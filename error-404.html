@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Estilos-->
+  <link rel="stylesheet" href="../../assets/css/style.css" type="text/css" media="screen" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <!--link rel="icon" type="image/png" href="favicon.png" /-->
+  <title>NO COUNTRY BAR </title>
+</head>
+<body>
+	<!-- nav secccion -->
+<nav class="nav_bar">
+  <div class="container_logo">
+    <!--a href="../../../home/" /-->
+    <a href="../../">
+      <img class="logo" src="../../../../assets/img/error.png" style="width: 150px;" />
+    </a>
+  </div>
+  <div class="menu">
+    <h1 >ERROR 404</h1>
+  </div>
+</nav>
+</div>
+<div class="container_body">
+<div>
+<section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+              
+        <a class="btn" href="/"><h2 id="error"></h2></a>
+		 
+</section>
+</div>
+
+</div>
+<div class="container_footer">
+   Footer
+</div>
+<script>
+ function error404(error, id,delay){
+  let arr=error.split("");
+  i=0;
+ let intervalo= setInterval(function(){
+    if(i==arr.length-1){ 
+      document.getElementById(id).innerHTML+=arr[i];
+      clearInterval(intervalo);} 
+    else {
+    if(arr[i]==" "){
+     document.getElementById(id).innerHTML+=arr[i];
+     document.getElementById(id).innerHTML+=arr[i+1];
+      i+=2;
+    }else{
+    document.getElementById(id).innerHTML+=arr[i];
+    i++;
+      }
+    }
+  },delay); 
+}
+
+
+error404("La pagina solicitada no se encuentra, volver al inicio","error",40);
+
+</script>
+</body>
+</html>
