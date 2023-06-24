@@ -22,7 +22,7 @@ class UsuarioModel extends BdModel {
         return $data;
     }
     
-    public function agregarUsuario($nombre_usu, $correo_usu, $clave_usu, $permiso_usu) {
+    public function agregarUsuario($nombre_usu="Sin Nombre", $correo_usu, $clave_usu, $permiso_usu="Sin Nombre") {
         // Generar el hash de la contraseña
         $hashed_clave_usu = password_hash($clave_usu, PASSWORD_DEFAULT);
     

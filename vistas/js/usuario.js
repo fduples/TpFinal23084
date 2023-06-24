@@ -8,10 +8,12 @@ function validarUsu() {
         // console.log("El usuario debe contener un @")
         document.getElementById("mensajeUsu").innerHTML="El usuario debe contener un @"
         document.getElementById("mensajeUsu").className="text-danger fw-bold p-2 rounded"
+        user.className="form-control border border-danger border-3 fw-bold p-2 rounded"
         return false
     } else if(!user.value.toLowerCase().includes(".")) {
         document.getElementById("mensajeUsu").innerHTML="El correo no está completo"
         document.getElementById("mensajeUsu").className="text-danger fw-bold p-2 rounded"
+        user.className="form-control border border-danger border-3 fw-bold p-2 rounded"
         return false
     } else {
         document.getElementById("mensajeUsu").innerHTML=""
@@ -33,6 +35,7 @@ function defFortaleza() {
     if (!regex.test(pass.value)) {
         document.getElementById("mensajePass").innerHTML="Password debe contener una  minúscula, una mayuscula y debe ser mayor a 8 caracteres"        
         document.getElementById("mensajePass").className="bg-danger p-1 m-1 rounded"
+        pass.className="form-control border border-danger border-3 fw-bold p-2 rounded"
         return false
     } else {
         document.getElementById("mensajePass").innerHTML=""
@@ -51,6 +54,7 @@ function compararPass() {
     if (repPass.value!=pass.value) {
         document.getElementById("mensajeCompara").innerHTML="La contraseñas no coinciden"        
         document.getElementById("mensajeCompara").className="bg-danger p-1 m-1 rounded"
+        repPass.className="form-control border border-danger border-3 fw-bold p-2 rounded"
         return false
     } else {
         document.getElementById("mensajeCompara").innerHTML=""        
@@ -69,6 +73,6 @@ function validarTodo() {
     
 }
 
-document.getElementById("user").onkeyup = validarTodo;
-document.getElementById("pass").onkeyup = validarTodo;
+document.getElementById("usuario").onkeyup = validarTodo;
+document.getElementById("clave").onkeyup = validarTodo;
 document.getElementById("repPass").onkeyup = validarTodo;

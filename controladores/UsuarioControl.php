@@ -2,36 +2,27 @@
 session_start();
 require_once "../Modelos/UsuarioModel.php";
 if (isset($_GET['reg'])) {
-    f ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["usuario"];
         $password = $_POST["clave"];
 
         try {
             $usuario_model = new UsuarioModel();
-
+            if(!$usuario_model->obtenerUsuarioPorCorreo($email)){
+                $usuario_model->agregarUsuario("Sin Nombre",$email, $password);
             // Consultar la base de datos para verificar las credenciales utilizando la clase UsuarioModel
-            if($resultado = $usuario_model->obtenerUsuarioPorCorreo($email)){
-                header("Location: registro.php?existe=$email");
-                break;
             }
-
-            if ($resultado && password_verify($password, $resultado['clave_usu'])) {
-                // Inicio de sesión exitoso
-                $_SESSION["loggedin"] = true;
-                $_SESSION["email"] = $email;
-                header("Location: index.php"); // Redirige a la página principal después del inicio de sesión
-            } else {
-                echo "Email o contraseña incorrectos.";
-            }
-        } catch (PDOException $e) {
-            echo "Error al iniciar sesión: " . $e->getMessage();
+                header("Location: ../vistas/acceso.php?reg"); // Redirige a la página principal después del inicio de sesión
+            
+        } catch (mysqli_sql_exception $e) {
+            header("Location: ../vistas/acceso.php?error=" . $e->getMessage());
         }
     }
 } else {
     // Procesar el formulario de inicio de sesión
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $email = $_POST["usuario"];
+        $password = $_POST["clave"];
 
         try {
             $usuario_model = new UsuarioModel();
@@ -43,7 +34,7 @@ if (isset($_GET['reg'])) {
                 // Inicio de sesión exitoso
                 $_SESSION["loggedin"] = true;
                 $_SESSION["email"] = $email;
-                header("Location: index.php"); // Redirige a la página principal después del inicio de sesión
+                header("Location: ../vistas/acceso.php?log"); // Redirige a la página principal después del inicio de sesión
             } else {
                 echo "Email o contraseña incorrectos.";
             }
