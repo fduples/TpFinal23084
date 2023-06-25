@@ -34,11 +34,11 @@ if (isset($_GET['reg'])) {
                 // Inicio de sesión exitoso
                 $_SESSION["loggedin"] = true;
                 $_SESSION["email"] = $email;
-                header("Location: ../vistas/acceso.php?log"); // Redirige a la página principal después del inicio de sesión
+                header("Location: ../vistas/index.php?log"); // Redirige a la página principal después del inicio de sesión
             } else {
                 echo "Email o contraseña incorrectos.";
             }
-        } catch (PDOException $e) {
+        } catch (mysqli_sql_exception $e) {
             echo "Error al iniciar sesión: " . $e->getMessage();
         }
     }
