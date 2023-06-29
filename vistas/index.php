@@ -1,11 +1,26 @@
 <?php
+require_once "../config.php";
 session_start();
-//require_once "controladores/UsuarioControl.php";
+//Verifico que exista una session activa.
 if (!isset($_SESSION['loggedin'])) {
-    // Redirigir al formulario de inicio de sesión
+    // Redirjo al formulario de inicio de sesión si no hay session activa
     header("Location: acceso.php");
     exit;
 }
+
+// Guardo el tiempo de última actividad del usuario almacenado en la sesión
+$ultima_actividad = isset($_SESSION['ultima_actividad']) ? $_SESSION['ultima_actividad'] : time();
+
+// Verifico si pasó el tiempo de inactividad establecido y si pasó destruyo la session
+if ((time() - $ultima_actividad) > TIEMPO_INACTIVIDAD) {
+    // Destruyo la sesión y redirij al formulario de acceso para volver a loggear usuario
+    session_destroy();
+    header("Location: acceso.php");
+    exit;
+}
+
+// Como la session aun esta activa actualizo la última actividad con el tiempo actual
+$_SESSION['ultima_actividad'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +33,7 @@ if (!isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <h1>Hello, world!</h1>
+    <button class="btn btn-danger" onclick="window.location.href = '../controladores/desloggControl.php?salir'" >Salir</button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>

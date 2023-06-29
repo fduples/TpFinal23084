@@ -1,12 +1,29 @@
 <?php
+require_once "../config.php";
 session_start();
-//require_once "controladores/UsuarioControl.php";
-if (isset($_SESSION['id_usu'])) {
-    // Redirigir al formulario de inicio de sesión
-    header("Location: index.php");
+
+// Guardo el tiempo de última actividad del usuario almacenado en la sesión
+$ultima_actividad = isset($_SESSION['ultima_actividad']) ? $_SESSION['ultima_actividad'] : time();
+
+// Verifico si pasó el tiempo de inactividad establecido y si pasó destruyo la session
+if ((time() - $ultima_actividad) > TIEMPO_INACTIVIDAD) {
+    // Destruyo la sesión y redirij al formulario de acceso para volver a loggear usuario
+    session_destroy();
+    header("Location: acceso.php");
     exit;
 }
+
+// Como la session aun esta activa actualizo la última actividad con el tiempo actual
+$_SESSION['ultima_actividad'] = time();
+
+//Verifico que exista una session activa.
+if (isset($_SESSION['loggedin'])) {
+  // Redirjo al al index porque ya hay una session logueada
+  header("Location: index.php");
+  exit;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +34,7 @@ if (isset($_SESSION['id_usu'])) {
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+  <?php include('recursos/barra.php'); ?>
         <h3 class="text-center my-4" id="titulo">Ingreso Usuario</h3>
 
     <div class="container bg-light text-center d-flex justify-content-center p-3 border w-25">
