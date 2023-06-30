@@ -37,16 +37,16 @@ if (isset($_SESSION['loggedin'])) {
   <?php include('recursos/barra.php'); ?>
         <h3 class="text-center my-4" id="titulo">Ingreso Usuario</h3>
 
-    <div class="container bg-light text-center d-flex justify-content-center p-3 border w-25">
+    <div class="container bg-body-secondary text-center d-flex justify-content-center p-3 border rounded-2 w-25">
       <div class="w-75">
         <form action="../controladores/UsuarioControl.php" method="post">
           <div class="form-group mb-3">
             <label for="usuario" class="form-label">Correo:</label>
-            <input type="email" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required>
+            <input type="email" name="usuario" id="usuario" class="form-control shadow" placeholder="Usuario" required>
           </div>
           <div class="form-group mb-3">
             <label for="clave" class="form-label">Contraseña:</label>
-            <input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña" required>
+            <input type="password" name="clave" id="clave" class="form-control shadow" placeholder="Contraseña" required>
           </div>
           
           <input type="submit" value="Ingresar" class="btn btn-primary" id="enviar">
