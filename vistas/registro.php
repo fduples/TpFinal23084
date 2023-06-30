@@ -40,28 +40,39 @@ if (isset($_SESSION['loggedin'])) {
       <div class="w-75">
         <form action="../controladores/UsuarioControl.php?reg" method="post">
           <div class="form-group mb-3">
-            <label for="usuario" class="form-label">Usuario:</label>
+            <label for="usuario" class="form-label fs-5">Usuario:</label>
             <input type="email" onkeyup="validarUsu()" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required>
             <div id="mensajeUsu"></div>
           </div>
           <div class="form-group mb-3">
-            <label for="clave" class="form-label">Contraseña:</label>
+            <label for="clave" class="form-label fs-5">Contraseña:</label>
             <input type="password" onkeyup="defFortaleza()" name="clave" id="clave" class="form-control" placeholder="Contraseña" required>
             <div id="mensajePass"></div>
           </div>
           <div class="form-group mb-3">
-            <label for="repPass" class="form-label">Reingrese Contraseña:</label>
+            <label for="repPass" class="form-label fs-5">Reingrese Contraseña:</label>
             <input type="password" onkeyup="compararPass()" name="repPass" id="repPass" class="form-control" placeholder="Reingrese Contraseña" required>
             <div id="mensajeCompara"></div>
           </div>
-          <input type="submit" value="Registrar" class="btn btn-primary disabled" id="enviar">
+          <div class="form-check w-50 mx-auto mb-3">
+            <input class="form-check-input fs-4" type="checkbox" name="checkAdmin" id="checkAdmin" value="option1">
+            <label class="form-check-label fs-5" for="checkAdmin">
+              Es Administrador
+            </label>
+          </div>
+          <div class="form-group mb-3">
+            <label for="claveAdmin" class="form-label fs-5">Contraseña:</label>
+            <input type="hidden" name="claveAdmin" id="claveAdmin" class="form-control" placeholder="Token Administrador">
+            <div id="mensajeAdmin"></div>
+          </div>
+          <input type="submit" value="Registrar" class="btn btn-primary disabled d-flex" id="enviar">
         </form>
         </div>
         <?php 
         if (isset($_GET['existe'])) {
         ?>
         <div class="alert alert-warning m-3 text-danger fw-bold" role="alert">
-          La dirección de orreo <?php echo $_GET['existe']; ?> ha sido registrado anterioriormente
+          La dirección de correo <?php echo $_GET['existe']; ?> ha sido registrado anterioriormente
         </div>
         <?php
         }
