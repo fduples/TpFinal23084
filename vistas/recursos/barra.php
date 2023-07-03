@@ -9,9 +9,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <?php if (isset($_SESSION['permiso']) && $_SESSION['permiso'] === "administrador") { ?>
+          <li class="nav-item">
+          <a class="nav-link" href="admin.php">Adminitración de usuarios</a>
         </li>
+        <?php } ?>
+        
         <!-- Dropdown para usar mas adelante
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,10 +37,12 @@
             </div>
             <div class="navbar-nav">
                 <a class="nav-link" href="registro.php" >Registrarse</a>
-        </div>
+            </div>
             <?php } else { ?>
-                <p><?php echo $_SESSION['email']; ?></p>
-                <button class="btn btn-danger" onclick="window.location.href = '../controladores/desloggControl.php?salir'" >Salir</button>
+              <form class="mt-1">
+                <p class="me-2 mt-2"><?php echo $_SESSION['email']; ?></button>
+                <button class="btn btn-sm btn-outline-danger align-middle" type="button" onclick="window.location.href = '../controladores/desloggControl.php?salir'" ><i class="bi bi-door-open-fill"></i> Salir</button>
+              </form>
 
                 <?php } ?> 
         </div>

@@ -73,6 +73,37 @@ function validarTodo() {
     
 }
 
+function mostrarCajaAdmin() {
+    var checkbox = document.getElementById("checkAdmin");
+    var cajaAdmin = document.getElementById("cajaAdmin");
+    
+    if (checkbox.checked) {
+      cajaAdmin.style.display = "block";
+    } else {
+      cajaAdmin.style.display = "none";
+    }
+  }
+
+  const claveAdminCorrecta = "23084";  // Clave de administración correcta
+
+function comprobarClaveAdmin() {
+    const claveIngresada = document.getElementById("claveAdmin").value;  // Obtener el valor ingresado en el campo de contraseña
+    let mensaje = document.getElementById("mensajeAdmin");
+    if (claveIngresada === claveAdminCorrecta) {
+        // La clave es correcta envio mensaje y agrego el value de administrador al usuario
+        mensaje.innerText = "Token correcto!";
+        mensaje.style.color = "green";
+        document.getElementById("permiso").value = "administrador";
+        // Realizar las acciones que correspondan para un administrador válido
+    } else {
+        // La clave es incorrecta se lo informo al usuario
+        mensaje.innerText = "Token incorrecto";
+        mensaje.style.color = "red";
+        document.getElementById("permiso").value = "noAdmin";
+    }
+}
+
+document.getElementById("claveAdmin").onkeyup = comprobarClaveAdmin;
 document.getElementById("usuario").onkeyup = validarTodo;
 document.getElementById("clave").onkeyup = validarTodo;
 document.getElementById("repPass").onkeyup = validarTodo;
