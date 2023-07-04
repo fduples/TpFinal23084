@@ -1,4 +1,9 @@
 
+function confirmaEliminar(userId) {
+    var eliminar = document.getElementById("borraOk");
+    eliminar.href = "../controladores/usuarioControl.php?borrar_id=" + userId;
+}
+
 function validarUsu() {
     console.log("ingreso validarUsu")
 
@@ -107,3 +112,4 @@ document.getElementById("claveAdmin").onkeyup = comprobarClaveAdmin;
 document.getElementById("usuario").onkeyup = validarTodo;
 document.getElementById("clave").onkeyup = validarTodo;
 document.getElementById("repPass").onkeyup = validarTodo;
+
