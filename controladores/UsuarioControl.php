@@ -5,6 +5,9 @@ require_once "../Modelos/PacienteModel.php";
 
 session_start();
 
+//instancio el modelo de manejo de usuario de la base de datos
+$usuario_model = new UsuarioModel();
+
 //Verifico si llega por get la variable reg y si es true inicio el registro:
 if (isset($_GET['reg'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,8 +20,6 @@ if (isset($_GET['reg'])) {
         $permiso = $_POST["permiso"];
 
         try {
-            //instancio el modelo de manejo de usuario de la base de datos
-            $usuario_model = new UsuarioModel();
             $paciente = new PacienteModel();
             //Verifico que el usuario y paciente no existan previamente
             if(!$usuario_model->obtenerUsuarioPorCorreo($email) && !$paciente->obtenerPacientePorDocumento($documento)){
@@ -40,9 +41,9 @@ if (isset($_GET['reg'])) {
 }elseif (isset($_GET['borrar_id'])) {
     try {
         $usuario_model->borrarUsuario($_GET['borrar_id']);
-        header("Location: ../vistas/acceso.php?borrado");
+        header("Location: ../vistas/admin.php?borrado");
     } catch (mysqli_sql_exception $e) {
-        header("Location: ../vistas/acceso.php?borrado=" . $e->getMessage());
+        header("Location: ../vistas/admin.php?borrado=" . $e->getMessage());
     }
    
 } else {//Al no entrar al if porque no es registro entonces:

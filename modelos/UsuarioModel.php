@@ -112,7 +112,7 @@ class UsuarioModel extends BdModel {
 
     public function borrarUsuario($id_usu){
         try {
-            $sql = "DELETE * FROM usuarios WHERE id_usu = ?";
+            $sql = "DELETE FROM usuarios WHERE id = ?";
             $stmt = $this->db->prepare($sql);
 
             if (!$stmt) {

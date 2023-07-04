@@ -40,8 +40,18 @@ if (isset($_SESSION['loggedin'])) {
         <h3 class="text-center my-4" id="titulo">Ingreso Usuario</h3>
 
     <div class="container bg-body-secondary text-center d-flex justify-content-center p-3 border rounded-2 w-25">
+    
       <div class="w-75">
         <form action="../controladores/UsuarioControl.php" method="post">
+        <?php 
+        if (isset($_GET['noUsu'])) {
+        ?>
+        <div class="alert alert-warning m-3 mx-auto text-danger fw-bold container-fluid" role="alert">
+          El usuario ingresado no se encuentra registrado. Si quiere registrarse haga click <a href="registro.php">acá</a>
+        </div>
+        <?php
+        }
+        ?>
           <div class="form-group mb-3">
             <label for="usuario" class="form-label">Correo:</label>
             <input type="email" name="usuario" id="usuario" class="form-control shadow" placeholder="Usuario" required>

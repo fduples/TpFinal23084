@@ -4,6 +4,13 @@ function confirmaEliminar(userId) {
     eliminar.href = "../controladores/usuarioControl.php?borrar_id=" + userId;
 }
 
+function edicion(id, nombre, correo) {
+    document.getElementById("idEdita").value = id;
+    document.getElementById("nombreEdita").value = nombre;
+    document.getElementById("usuarioEdita").value = correo;
+    document.getElementById("claveEdita").value = "";
+}
+
 function validarUsu() {
     console.log("ingreso validarUsu")
 
