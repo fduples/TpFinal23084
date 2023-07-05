@@ -1,14 +1,24 @@
 
+//Método usado en modal de confirmación
 function confirmaEliminar(userId) {
-    var eliminar = document.getElementById("borraOk");
-    eliminar.href = "../controladores/usuarioControl.php?borrar_id=" + userId;
+    if (confirm("Está a punto de eliminar este usuario")) {
+        window.location.href = "../controladores/usuarioControl.php?borrar_id=" + userId;
+    }
 }
 
-function edicion(id, nombre, correo) {
+//Metodo usado en el modal de edición
+function edicion(id, nombre, correo, permiso) {
     document.getElementById("idEdita").value = id;
-    document.getElementById("nombreEdita").value = nombre;
-    document.getElementById("usuarioEdita").value = correo;
-    document.getElementById("claveEdita").value = "";
+    document.getElementById("nombre").value = nombre;
+    document.getElementById("usuario").value = correo;
+    
+    if (permiso == 'administrador') {
+        document.getElementById("checkAdminEdita").checked = true;
+        document.getElementById("permisoEdita").value = permiso;
+    } else {
+        document.getElementById("checkAdminEdita").checkbox = false;
+        document.getElementById("permisoEdita").value = "noAdmin";
+    }
 }
 
 function validarUsu() {

@@ -9,7 +9,31 @@ session_start();
 $usuario_model = new UsuarioModel();
 
 //Verifico si llega por get la variable reg y si es true inicio el registro:
-if (isset($_GET['reg'])) {
+if(isset($_GET['edita'])){
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //Guardo el correo de usuario y la clave
+        $nombre = $_POST["nombre"];
+        $correo = $_POST["usuario"];
+        $id_usu = $_POST["idEdita"];
+
+        try {
+            //Verifico que el usuario existan previamente
+            if($usuario_model->obtenerUsuarioPorCorreo($correo)){
+                //Si existe lo guardo en la base de datos y luego redirijo nuevamente a la pantalla de admin
+                
+                if ($e = $usuario_model->actualizarUsuarioSinClave($id_usu, $nombre, $correo)) {
+                    header("Location: ../vistas/admin.php?editado=$id_usu"); // Redirige a la página de administracion
+                } else {
+                    //redirijo a la pagina de registro con la advertencia de que el ususario no fue editado
+                    header("Location: ../vistas/admin.php?noEditado=$id_usu");
+                } 
+            }
+            //si el try no funciona por error en la base de datos manejamos la exception y las enviamos como valor por get
+        } catch (mysqli_sql_exception $e) {
+            header("Location: ../vistas/registro.php?error=" . $e->getMessage());
+        }
+    }
+} elseif (isset($_GET['reg'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Guardo el correo de usuario y la clave
         $nombre = $_POST["nombre"];
@@ -18,7 +42,6 @@ if (isset($_GET['reg'])) {
         $telefono = $_POST["telefono"];
         $password = $_POST["clave"];
         $permiso = $_POST["permiso"];
-
         try {
             $paciente = new PacienteModel();
             //Verifico que el usuario y paciente no existan previamente

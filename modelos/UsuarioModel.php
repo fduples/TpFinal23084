@@ -94,21 +94,23 @@ class UsuarioModel extends BdModel {
         }
     }
 
-    public function actualizarUsuarioSinClave($id_usu, $nombre_usu, $correo_usu, $permiso_usu) {
+    public function actualizarUsuarioSinClave($id_usu, $nombre_usu, $correo_usu) {
         try {
-            $sql = "UPDATE usuarios SET nombre_usu = ?, correo_usu = ?, permiso_usu = ? WHERE id_usu = ?";
+            $sql = "UPDATE usuarios SET nombre_usu = ?, correo_usu = ? WHERE id = ?";
             $stmt = $this->db->prepare($sql);
-
+    
             if (!$stmt) {
                 throw new Exception("Error al preparar la consulta: " . $this->db->error);
             }
-
-            $stmt->bind_param("sssi", $nombre_usu, $correo_usu, $permiso_usu, $id_usu);
+    
+            $stmt->bind_param("ssi", $nombre_usu, $correo_usu, $id_usu);
             $stmt->execute();
+            return true;
         } catch (Exception $e) {
-            echo 'Error al actualizar el usuario en la base de datos: ' . $e->getMessage();
+            return $e->getMessage();
         }
     }
+    
 
     public function borrarUsuario($id_usu){
         try {

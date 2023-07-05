@@ -80,10 +80,10 @@ if (isset($_SESSION['loggedin'])) {
           </div>
           <div class="form-check mb-3 rounded-2 p-3">
             <input class="form-check-input mx-auto my-auto border border-black" type="checkbox" name="checkAdmin" id="checkAdmin" value="option1" onchange="mostrarCajaAdmin()">
-            <label class="form-check-label" for="checkAdmin">Es Médico</label>
+            <label class="form-check-label" for="checkAdmin">Es Administrador</label>
           </div>
           <div class="form-group mb-3" id="cajaAdmin" style="display: none;">
-            <label for="claveAdmin" class="form-label">Ingrese su clave de Médico:</label>
+            <label for="claveAdmin" class="form-label">Ingrese token de Administrador:</label>
             <input type="password" name="claveAdmin" id="claveAdmin" class="form-control" placeholder="Token Administrador">
             <div id="mensajeAdmin"></div>
           </div>
