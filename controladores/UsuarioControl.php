@@ -1,7 +1,7 @@
 <?php
 require_once "../config.php";
-require_once "../Modelos/UsuarioModel.php";
-require_once "../Modelos/PacienteModel.php";
+require_once "../modelos/UsuarioModel.php";
+require_once "../modelos/PacienteModel.php";
 
 session_start();
 
@@ -21,7 +21,7 @@ if(isset($_GET['edita'])){
             if($usuario_model->obtenerUsuarioPorCorreo($correo)){
                 //Si existe lo guardo en la base de datos y luego redirijo nuevamente a la pantalla de admin
                 
-                if ($e = $usuario_model->actualizarUsuarioSinClave($id_usu, $nombre, $correo)) {
+                if ($usuario_model->actualizarUsuarioSinClave($id_usu, $nombre, $correo)) {
                     header("Location: ../vistas/admin.php?editado=$id_usu"); // Redirige a la página de administracion
                 } else {
                     //redirijo a la pagina de registro con la advertencia de que el ususario no fue editado
@@ -66,7 +66,7 @@ if(isset($_GET['edita'])){
         $usuario_model->borrarUsuario($_GET['borrar_id']);
         header("Location: ../vistas/admin.php?borrado");
     } catch (mysqli_sql_exception $e) {
-        header("Location: ../vistas/admin.php?borrado=" . $e->getMessage());
+        header("Location: ../vistas/admin.php?Noborrado=" . $e->getMessage());
     }
    
 } else {//Al no entrar al if porque no es registro entonces:

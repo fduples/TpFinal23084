@@ -82,7 +82,7 @@ $usuarios = $usuMod->obtenerUsuarios();
                 <?php endforeach; ?>
             </tbody>
         </table>        
-        <p><a href="index.php">Volver al inicio</a></p>
+        <a class="btn btn-primary" href="index.php">Volver al inicio</a>
     </div>
 <!-- MODAL EDICIón USUARIO -->
     <div class="modal fade" id="editaModal" tabindex="-1" aria-labelledby="editaModalLabel" aria-hidden="true">

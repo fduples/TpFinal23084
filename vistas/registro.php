@@ -41,6 +41,11 @@ if (isset($_SESSION['loggedin'])) {
     <div class="container bg-body-secondary text-center d-flex justify-content-center p-3 border w-25">
       
       <div class="w-75">
+      <div class="alert alert-success m-3 mx-auto text-danger fw-bold container-fluid" role="alert">
+        <p>Este registro valida que un correo tenga @, tengo algo escrito antes del @ y que tenga un punto despues del @</p><br>
+        <p>Tambien valida que la clave tenga al menos una mayúscula, una minúscul y que sea mayor a 7 caracteres</p><br>
+        <p>Se agrega por último la posibilidad de elegir si el usuarioque se está cargano es administrador. Para ello se le solicita una clave (23084) que se valida y de ser correcta se informa y se le asigna ese permiso y de no serlo no se le asigna y se crea el usuario sin permiso de admin. El usuario Administrador es el único que puede administrar a otros usuarios</p><br>
+        </div>
       <?php 
         if (isset($_GET['existe'])) {
         ?>
@@ -53,7 +58,7 @@ if (isset($_SESSION['loggedin'])) {
         <form action="../controladores/UsuarioControl.php?reg" method="post">
           <div class="form-group" class="form-label fs-5">
             <label for="nombre">Nombre y Apellido:</label>
-            <input type="text" class="form-control shadow" id="nombre" name="nombre" placeholder="Nombre y Aepeliido" required>
+            <input type="text" class="form-control shadow" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
           </div>
           <div class="form-group mb-3">
             <label for="documento" class="form-label fs-5">Documento:</label>

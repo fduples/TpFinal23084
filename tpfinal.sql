@@ -25,16 +25,14 @@ CREATE TABLE medicos (
   nombre VARCHAR(2500),
   matricula VARCHAR(15),
   id_especialidad INT,
-  FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_esp)
 );
 
 -- Agregar la tabla "paciente"
 CREATE TABLE paciente (
   id_pac INT AUTO_INCREMENT PRIMARY KEY,
   documento INT(10),
-  telefone VARCHAR(20),
+  telefono VARCHAR(20),
   id_usu INT,
-  FOREIGN KEY (id_usu) REFERENCES usuarios(id_usu)
 );
 
 -- Agregar la tabla "turnos"
@@ -45,6 +43,4 @@ CREATE TABLE turnos (
   fecha DATE,
   hora TIME,
   tiempo INT(10),
-  FOREIGN KEY (id_med) REFERENCES medicos(id_med),
-  FOREIGN KEY (id_pac) REFERENCES paciente(id_pac)
 );
