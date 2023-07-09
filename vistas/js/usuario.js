@@ -2,15 +2,17 @@
 //Método usado en modal de confirmación
 function confirmaEliminar(userId) {
     if (confirm("Está a punto de eliminar este usuario")) {
-        window.location.href = "../controladores/usuarioControl.php?borrar_id=" + userId;
+        window.location.href = "../controladores/pacienteControl.php?borrar_id=" + userId;
     }
 }
 
 //Metodo usado en el modal de edición
-function edicion(id, nombre, correo, permiso) {
+function edicion(id, nombre, documento, correo, telefono, permiso) {
     document.getElementById("idEdita").value = id;
     document.getElementById("nombre").value = nombre;
+    document.getElementById("documento").value = documento;
     document.getElementById("usuario").value = correo;
+    document.getElementById("telefono").value = telefono;
     
     if (permiso == 'administrador') {
         document.getElementById("checkAdminEdita").checked = true;

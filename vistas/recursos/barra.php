@@ -9,24 +9,20 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
         </li>
-        <?php if (isset($_SESSION['permiso']) && $_SESSION['permiso'] === "administrador") { ?>
-          <li class="nav-item">
-          <a class="nav-link" href="admin.php">Adminitración de usuarios</a>
-        </li>
-        <?php } ?>
-        
-        <!-- Dropdown para usar mas adelante
+        <?php if (isset($_SESSION['permiso']) && $_SESSION['permiso'] === "administrador") { ?>        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Administración
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="admin.php">Usuarios</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="admin.php">Pacientes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Médicos</a></li>
           </ul>
-        </li> -->
+        </li>
+        <?php } ?>
         
       </ul>
       
