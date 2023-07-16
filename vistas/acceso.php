@@ -42,7 +42,7 @@ if (isset($_SESSION['loggedin'])) {
     <div class="container bg-body-secondary text-center d-flex justify-content-center p-3 border rounded-2 w-25">
     
       <div class="w-75">
-        <form action="../controladores/UsuarioControl.php" method="post">
+        <form action="../controladores/PacienteUsuarioControl.php" method="post">
         <?php 
         if (isset($_GET['noUsu'])) {
         ?>

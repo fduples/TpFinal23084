@@ -1,13 +1,13 @@
 <?php
 require_once "../config.php";
 require_once "../modelos/UsuarioModel.php";
-require_once "../modelos/PacienteModel.php";
+require_once "../modelos/PacienteUsuarioModel.php";
 
 session_start();
 
 // Instancio el modelo de manejo de usuario de la base de datos
 $usuarioModel = new UsuarioModel();
-$pacienteUsuarioModel = new PacienteModel();
+$pacienteUsuarioModel = new PacienteUsuarioModel();
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['loggedin'])) {

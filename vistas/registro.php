@@ -55,7 +55,7 @@ if (isset($_SESSION['loggedin'])) {
         <?php
         }
         ?>
-        <form action="../controladores/UsuarioControl.php?reg" method="post">
+        <form action="../controladores/PacienteUsuarioControl.php?reg" method="post">
           <div class="form-group" class="form-label fs-5">
             <label for="nombre">Nombre y Apellido:</label>
             <input type="text" class="form-control shadow" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
@@ -93,7 +93,7 @@ if (isset($_SESSION['loggedin'])) {
             <div id="mensajeAdmin"></div>
           </div>
 
-          <input type="hidden" name="permiso" id="permiso" value="noAdmin">
+          <input type="hidden" name="permiso" id="permiso" value="paciente">
           <input type="submit" value="Registrar" class="btn btn-primary disabled d-flex" id="enviar">
        
         </form>

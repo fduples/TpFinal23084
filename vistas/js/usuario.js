@@ -123,7 +123,7 @@ function comprobarClaveAdmin() {
         // La clave es incorrecta se lo informo al usuario
         mensaje.innerText = "Token incorrecto";
         mensaje.style.color = "red";
-        document.getElementById("permiso").value = "noAdmin";
+        document.getElementById("permiso").value = "paciente";
     }
 }
 

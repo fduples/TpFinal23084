@@ -1,37 +1,30 @@
 <?php
 require_once "../config.php";
-require_once "../modelos/UsuarioModel.php";
-require_once "../modelos/PacienteModel.php";
-
+//require_once "../modelos/UsuarioModel.php";
+require_once "../modelos/PacienteUsuarioModel.php";
 session_start();
+// Instancio el modelo de manejo de usuario de la base de datos
+//$usuarioModel = new UsuarioModel();
+$pacienteUsuarioModel = new PacienteUsuarioModel();
+// Obtener la lista de pacientes y usuarios
+$pacientesUsuarios = $pacienteUsuarioModel->obtenerPacientesUsuarios();
 
-//instancio el modelo de manejo de usuario de la base de datos
-$usuario_model = new UsuarioModel();
+// Procesar la solicitud de edición
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['edita'])) {
+    $idEdita = $_POST["idEdita"];
+    $nombre = $_POST["nombre"];
+    $documento = $_POST["documento"];
+    $telefono = $_POST["telefono"];
+    $correo = $_POST["usuario"];
+    $permiso = $_POST["permisoEdita"];
 
-//Verifico si llega por get la variable reg y si es true inicio el registro:
-if(isset($_GET['edita'])){
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //Guardo el correo de usuario y la clave
-        $nombre = $_POST["nombre"];
-        $correo = $_POST["usuario"];
-        $id_usu = $_POST["idEdita"];
+    try {
+        // Actualizar el usuario y paciente
+        $pacienteUsuarioModel->editarUsuarioPaciente($idEdita, $nombre, $documento, $telefono, $correo, $permiso);
 
-        try {
-            //Verifico que el usuario existan previamente
-            if($usuario_model->obtenerUsuarioPorCorreo($correo)){
-                //Si existe lo guardo en la base de datos y luego redirijo nuevamente a la pantalla de admin
-                
-                if ($usuario_model->actualizarUsuarioSinClave($id_usu, $nombre, $correo)) {
-                    header("Location: ../vistas/admin.php?editado=$id_usu"); // Redirige a la página de administracion
-                } else {
-                    //redirijo a la pagina de registro con la advertencia de que el ususario no fue editado
-                    header("Location: ../vistas/admin.php?noEditado=$id_usu");
-                } 
-            }
-            //si el try no funciona por error en la base de datos manejamos la exception y las enviamos como valor por get
-        } catch (mysqli_sql_exception $e) {
-            header("Location: ../vistas/registro.php?error=" . $e->getMessage());
-        }
+        header("Location: ../vistas/adminPaciente.php?editado=$idEdita"); // Redirigir a la página de administración con el mensaje de edición exitosa
+    } catch (Exception $e) {
+        header("Location: ../vistas/adminPaciente.php?noEditado=$idEdita"); // Redirigir a la página de administración con el mensaje de error en la edición
     }
 } elseif (isset($_GET['reg'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -43,13 +36,12 @@ if(isset($_GET['edita'])){
         $password = $_POST["clave"];
         $permiso = $_POST["permiso"];
         try {
-            $paciente = new PacienteModel();
             //Verifico que el usuario y paciente no existan previamente
-            if(!$usuario_model->obtenerUsuarioPorCorreo($email) && !$paciente->obtenerPacientePorDocumento($documento)){
+            if(!$pacienteUsuarioModel->obtenerUsuarioPorCorreo($email) && !$pacienteUsuarioModel->obtenerPacientePorDocumento($documento)){
                 //Si no existe lo guardo en la base de datos y luego redirijo nuevamente a la pantalla de logueo
                 
-                if ($id_usu = $usuario_model->agregarUsuario($nombre,$email, $password, $permiso)) {
-                    $paciente->agregarPaciente($documento, $telefono, $id_usu);
+                if ($id_usu = $pacienteUsuarioModel->agregarUsuario($nombre,$email, $password, $permiso)) {
+                    $pacienteUsuarioModel->agregarPaciente($documento, $telefono, $id_usu);
                 }
                 header("Location: ../vistas/acceso.php?reg"); // Redirige a la página principal después del inicio de sesión
             } else {
@@ -63,7 +55,7 @@ if(isset($_GET['edita'])){
     }
 }elseif (isset($_GET['borrar_id'])) {
     try {
-        $usuario_model->borrarUsuario($_GET['borrar_id']);
+        $pacienteUsuarioModel->borrarUsuario($_GET['borrar_id']);
         header("Location: ../vistas/admin.php?borrado");
     } catch (mysqli_sql_exception $e) {
         header("Location: ../vistas/admin.php?Noborrado=" . $e->getMessage());
@@ -76,10 +68,8 @@ if(isset($_GET['edita'])){
         $password = $_POST["clave"];
 
         try {
-            $usuario_model = new UsuarioModel();
-
             // Consultar la base de datos para verificar las credenciales utilizando la clase UsuarioModel
-            $resultado = $usuario_model->obtenerUsuarioPorCorreo($email);
+            $resultado = $pacienteUsuarioModel->obtenerUsuarioPorCorreo($email);
 
             if ($resultado && password_verify($password, $resultado['clave_usu'])) {
                 // Inicio de sesión exitoso
@@ -97,4 +87,5 @@ if(isset($_GET['edita'])){
         }
     }
 }
+
 ?>

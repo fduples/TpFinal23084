@@ -1,0 +1,22 @@
+Vamos a reconfigurar todo nuevamente teniendo en cuenta que las tablas de la base de datos tpfinal son medico, disponibilidad_medico, especialidad y paciente. Que asimismo la tabla medico tiene los siguientes campos: id_med (int primary ai), nombre (varchar), matricula (varchar), id_especialidad (int foreing key de la tabla especialidad); la tabla disponibilidad_medico tiene los campos: id_disponibilidad (int primary ai), id_especialidad (int foreing key de la tabla especialidad), id_med (int foreing key de la tabla medico)dia_semana (int), hora_inicio (TIME), hora_fin (TIME); la tabla especialidad: id_especialidad (int primary ai), nombre_especialidad (varchar), duracion_turno (int); Tabla paciente: id_pac (int primary ai), documento (int), telefono (int). la conexion a la base de datos la tengo y es esta: 
+
+class BdModel {
+    protected $db;
+
+    public function __construct() {
+        
+        
+        $this->db = new mysqli(SERVIDOR, USUARIO, CLAVE, BASE);
+        
+        if ($this->db->connect_error) {
+            die("Error de conexión a la base de datos: " . $this->db->connect_error);
+        }        
+    }
+}
+
+Habria que agrega una nueva tabla que almacene los turnos solicitados por los pacientes y que les permita editarlos o cancelarlos. 
+Debería tener una interfaz en la que se muestre un calendario con los turnos posibles segun la especialidad elegida y el mes elegido y los turnos que no se puedan tomas se muestren desabilitados. 
+Tambien tiene que tener una sección en la que un usuario pueda ver sus turnos y editarlos o borrarlos.
+Tambien deben tener los médico la posibilidad de ver sus agendas de turnos tomados y un historial de pacientes atendidos.
+Todo esto usando las herramientas ya instruidas (php poo, mvc, html, javascript básico, css y bootstrap 5.3)
+Quisiera que fueras muy exaustivo en la la creación y que te despliegues todo lo que sea necesario

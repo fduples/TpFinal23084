@@ -17,9 +17,9 @@ if ($_SESSION['permiso'] !== 'administrador') {
 }
 
 // Cargar el modelo PacienteUsuarioModel
-require_once '../modelos/PacienteModel.php';
+require_once '../modelos/PacienteUsuarioModel.php';
 
-$modelo = new PacienteModel();
+$modelo = new PacienteUsuarioModel();
 
 // Obtener la lista de pacientes y usuarios
 $pacientesUsuarios = $modelo->obtenerPacientesUsuarios();
@@ -67,14 +67,14 @@ $pacientesUsuarios = $modelo->obtenerPacientesUsuarios();
             <tbody>
                 <?php foreach ($pacientesUsuarios as $pacienteUsuario): ?>
                     <tr>
-                        <td><?php echo $pacienteUsuario['id']; ?></td>
-                        <td><?php echo $pacienteUsuario['nombre']; ?></td>
+                        <td><?php echo $pacienteUsuario['id_pac']; ?></td>
+                        <td><?php echo $pacienteUsuario['nombre_usuario']; ?></td>
                         <td><?php echo $pacienteUsuario['documento']; ?></td>
                         <td><?php echo $pacienteUsuario['correo']; ?></td>
                         <td><?php echo $pacienteUsuario['telefono']; ?></td>
                         <td><?php echo $pacienteUsuario['permiso']; ?></td>
                         <td>
-                            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editaModal" onClick="edicion(<?php echo $pacienteUsuario['id']; ?>, '<?php echo $pacienteUsuario['nombre']; ?>', '<?php echo $pacienteUsuario['documento']; ?>', '<?php echo $pacienteUsuario['correo']; ?>', '<?php echo $pacienteUsuario['telefono']; ?>', '<?php echo $pacienteUsuario['permiso']; ?>')"><i class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editaModal" onClick="edicion(<?php echo $pacienteUsuario['id']; ?>, '<?php echo $pacienteUsuario['nombre_usuario']; ?>', '<?php echo $pacienteUsuario['documento']; ?>', '<?php echo $pacienteUsuario['correo']; ?>', '<?php echo $pacienteUsuario['telefono']; ?>', '<?php echo $pacienteUsuario['permiso']; ?>')"><i class="bi bi-pencil-square"></i></button>
                             <button type="button" class="btn btn-outline-danger" onClick="confirmaEliminar(<?php echo $pacienteUsuario['id']; ?>)"><i class="bi bi-person-x"></i></button>
                         </td>
                     </tr>
@@ -92,7 +92,7 @@ $pacientesUsuarios = $modelo->obtenerPacientesUsuarios();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="../controladores/pacienteControl.php?edita" method="post">
+                <form action="../controladores/PacienteUsuarioControl.php?edita" method="post">
                     <div class="form-group" class="form-label fs-5">
                         <label for="nombre">Nombre y Apellido:</label>
                         <input type="text" class="form-control shadow" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
