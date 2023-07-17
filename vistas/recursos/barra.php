@@ -36,6 +36,9 @@
             <li><a class="dropdown-item" href="#">Pedir Turno</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.php">Cambiar Contraseña <i class="bi bi-incognito"></i></a>
+        </li>
         <?php } 
         if (isset($_SESSION['permiso']) && $_SESSION['permiso'] === "medico") { ?>        
           <li class="nav-item dropdown">

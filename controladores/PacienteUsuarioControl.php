@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['edita'])) {
                 $_SESSION["loggedin"] = true;
                 $_SESSION["email"] = $email;
                 $_SESSION["permiso"] = $resultado['permiso_usu'];
+                $_SESSION["id_usu"] = $resultado['id'];
                 header("Location: ../vistas/index.php?log"); // Redirige a la página principal después del inicio de sesión
             } elseif (!$resultado){//Si el usuario no existe entonces vuelvo a la pagina de acceso con un atributo  para manejar en dicha pagina
                 header("Location: ../vistas/acceso.php?noUsu");
