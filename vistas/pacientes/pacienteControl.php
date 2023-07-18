@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['edita'])) {
     $documento = $_POST["documento"];
     $telefono = $_POST["telefono"];
     $correo = $_POST["usuario"];
-    $permiso = $_POST["permisoEdita"];
+    $permiso = $_POST["permiso"];
 
     try {
         // Actualizar el usuario y paciente

@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="../index.php">Inicio</a>
         </li>
         <?php
         if (isset($_SESSION['permiso']) && $_SESSION['permiso'] === "paciente") { ?>        
@@ -16,7 +16,7 @@
             Mi Perfil
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="perfilPaciente.php">Editar Perfil</a></li>
+            <li><a class="dropdown-item" href="perfil.php">Editar Perfil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="adminPaciente.php">Mis Turnos</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -24,7 +24,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.php">Cambiar Contraseña <i class="bi bi-incognito"></i></a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contraseña">Cambiar Contraseña <i class="bi bi-incognito"></i></button>
         </li>
         <?php } ?>
       </ul>      
@@ -48,3 +48,44 @@
     </div>
   </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="contraseña" tabindex="-1" aria-labelledby="contraseñaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5" id="contraseñaModalLabel">Formulario de modificacion de contrseña</h3>
+        <form action="pacienteControl.php?contraseña" method="POST">
+          <div class="mb-3">
+            <label for="actual" class="col-form-label">Ingrese su contraseña actual:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const myModal = document.getElementById('contraseña')
+  const myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })
+</script>

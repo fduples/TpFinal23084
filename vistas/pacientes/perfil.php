@@ -66,7 +66,7 @@ $paciente = $modelo->obtenerPacienteUsuario($_SESSION['id_usu']);
           <input type="hidden" name="permiso" id="permiso" value="paciente">
           <input type="hidden" name="idEdita" id="idEdita" value="<?php echo $paciente['id_usu']; ?>">
           <div class="w-100">
-            <a class="btn btn-info" href="">Cancelar</a>
+            <a class="btn btn-info" href="../index.php">Cancelar</a>
             <input type="submit" value="Guardar" class="btn btn-success" id="enviar">
           </div>
         </form>
